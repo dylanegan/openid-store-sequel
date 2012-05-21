@@ -4,6 +4,8 @@
 
 Storing your OpenIDs in your Sequels.
 
+[![Build Status](https://secure.travis-ci.org/dylanegan/openid-store-sequel.png?branch=master)](http://travis-ci.org/dylanegan/openid-store-sequel)
+
 ## Usage
 
 ```ruby
