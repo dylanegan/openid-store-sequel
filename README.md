@@ -1,4 +1,6 @@
-# openid-store-sequel
+# OpenID Store Sequel
+
+![](https://github.com/dylanegan/openid-store-sequel/raw/master/cat-attack.gif)
 
 Storing your OpenIDs in your Sequels.
 
