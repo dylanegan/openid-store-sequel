@@ -17,7 +17,7 @@ module OpenID
                            server_url: server_url,
                            handle: assoc.handle,
                            secret: Base64.encode64(assoc.secret),
-                           issued: assoc.issued,
+                           issued: assoc.issued.to_i,
                            lifetime: assoc.lifetime,
                            assoc_type: assoc.assoc_type
         )
