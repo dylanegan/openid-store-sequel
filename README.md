@@ -33,6 +33,25 @@ end
 server = OpenID::Server::Server.new(OpenID::Store::Sequel.new, ...)
 ```
 
+## File/bytea type field compatability issue
+
+There is an issue with File/bytea type fields when using an older version of the postgres client with a new postgres database. If you are having trouble getting things to work properly you can try reverting the bytea_output behavior to 'escape'.
+   
+```ruby
+if DB.adapter_scheme == :postgres
+  begin
+    DB.run("ALTER ROLE #{DB['select current_user'].first[:current_user]} SET bytea_output TO 'escape'")
+    puts "Success, bytea_output set to 'escape'. Re-establish your database connections to use the new encoding format."
+  rescue Sequel::DatabaseError => e
+    if e.message =~ /unrecognized configuration parameter "bytea_output"/
+      puts "It looks like you are connected to a legacy postgres server that uses 'escape' output by default. Bytea fields should work as expected."
+    else
+      raise e
+    end
+  end
+end
+```
+
 ## License (MIT)
 
 Copyright © 2012 [Merman](http://dylanegan.com/)
